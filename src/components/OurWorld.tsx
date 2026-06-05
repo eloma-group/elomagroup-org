@@ -174,7 +174,7 @@ export function OurWorld() {
 
       <style>{`
         .ow-root {
-          background: linear-gradient(180deg, #FBFBF9 0%, #EEF3F0 50%, #FBFBF9 100%);
+          background: linear-gradient(180deg, #FBFBF9 0%, #EEF3F0 60%, #EEF3F0 100%);
           position: relative;
           /* NO overflow:hidden here — it would break the sticky pin below.
              Horizontal bleed from the floating shapes is clipped by .ow-sticky. */

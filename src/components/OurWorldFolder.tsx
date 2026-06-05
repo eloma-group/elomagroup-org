@@ -34,8 +34,15 @@ export function OurWorldFolder() {
         <span className="owf-fs owf-fs-5" />
       </div>
 
+      {/* Background watermark text */}
+      <div className="owf-bgtext" aria-hidden>GROUP</div>
+
       <div className="owf-wrap">
-        <p className="owf-eyebrow">Curious? Take a look inside</p>
+        {/* Editorial heading */}
+        <div className="owf-heading" aria-label="Eloma Group">
+          <span className="owf-h-line owf-h-plain">ELOMA</span>
+          <span className="owf-h-line owf-h-boxed">GROUP</span>
+        </div>
 
         {/* ── Folder ── */}
         <a
@@ -114,12 +121,17 @@ export function OurWorldFolder() {
       <style>{`
         .owf-root {
           position: relative;
+          z-index: 2;
           overflow: hidden;
-          background: linear-gradient(180deg, #EEF3F0 0%, #FBFBF9 100%);
+          background: #EEF3F0;
           display: flex;
           align-items: center;
           justify-content: center;
           padding: clamp(56px, 7vh, 100px) clamp(24px, 4vw, 64px) clamp(80px, 11vw, 150px);
+          /* Pull up so folder enters viewport exactly as the sticky exits.
+             Sticky exits at: scroll past stage_height − sticky_height = 50vh after unpin.
+             -50vh aligns folder top with that moment. */
+          margin-top: -50vh;
         }
 
         /* Ambient 3D shapes */
@@ -170,11 +182,52 @@ export function OurWorldFolder() {
           display: flex; flex-direction: column; align-items: center;
           gap: clamp(18px, 2vw, 28px);
         }
-        .owf-eyebrow {
-          font-size: clamp(14px, 1.2vw, 18px);
-          font-weight: 600; color: ${MUTED}; letter-spacing: 0.2px;
-          margin: 0;
+        /* Background watermark text */
+        .owf-bgtext {
+          position: absolute;
+          bottom: -6%;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: clamp(140px, 24vw, 400px);
+          font-weight: 900;
+          letter-spacing: -0.05em;
+          text-transform: uppercase;
+          color: rgba(26,43,60,0.07);
+          white-space: nowrap;
+          user-select: none;
+          pointer-events: none;
+          z-index: 0;
+          font-family: "Helvetica Neue","Arial Black",Arial,sans-serif;
+          line-height: 1;
         }
+
+        /* Editorial heading */
+        .owf-heading {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 6px;
+          line-height: 1;
+        }
+        .owf-h-line {
+          display: block;
+          font-size: clamp(36px, 5.5vw, 74px);
+          font-weight: 900;
+          letter-spacing: -0.03em;
+          text-transform: uppercase;
+          font-family: "Helvetica Neue","Arial Black",Arial,sans-serif;
+          line-height: 1.05;
+        }
+        .owf-h-plain {
+          color: ${MUTED};
+        }
+        .owf-h-boxed {
+          color: ${NAVY};
+          border: 2.5px solid ${NAVY};
+          padding: 2px 22px 5px;
+          border-radius: 7px;
+        }
+
         .owf-hint {
           font-size: clamp(12px, 0.95vw, 14px);
           font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
