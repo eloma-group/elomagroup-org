@@ -57,12 +57,10 @@ export function Header() {
     return () => window.removeEventListener('scroll', check)
   }, [])
 
-  // The homepage hero is light, so the header must stay solid (dark text) over it -
-  // except over dark full-screen sections (e.g. Our Companies), which own the header.
-  const pathname = typeof window !== 'undefined' ? window.location.pathname : ''
-  const lightHero = pathname === '/'
+  // The homepage hero is a dark full-bleed video, so the header floats transparent
+  // over it (white wordmark) - same as the inner hero sections and dark sections.
   const transparent =
-    ((!lightHero && (overHero || overServices || overHeroSection)) || overDark) && !anyOpen && !mobileOpen
+    (overHero || overServices || overHeroSection || overDark) && !anyOpen && !mobileOpen
   const textColor = transparent ? '#ffffff' : '#08213C'
 
   // Whenever the header floats transparent over a dark surface, use the white wordmark.
@@ -129,7 +127,7 @@ export function Header() {
               className="eg-hd-logo"
               src={logoSrc}
               alt="Eloma Group"
-              style={{ height: '31px', width: 'auto' }}
+              style={{ height: '26px', width: 'auto' }}
             />
           </a>
 
@@ -358,7 +356,7 @@ export function Header() {
         @media (min-width: 1920px) {
           .eg-hd { height: 78px !important; }
           .eg-hd-inner { max-width: 1600px !important; }
-          .eg-hd-logo { height: 45px !important; }
+          .eg-hd-logo { height: 36px !important; }
           .eg-hd-word { font-size: 24px !important; }
           .eg-hd-link { height: 78px !important; font-size: 16.5px !important; padding: 0 18px !important; }
           .eg-hd-dd   { font-size: 16.5px !important; }
@@ -366,7 +364,7 @@ export function Header() {
         @media (min-width: 2560px) {
           .eg-hd { height: 92px !important; }
           .eg-hd-inner { max-width: 2000px !important; }
-          .eg-hd-logo { height: 54px !important; }
+          .eg-hd-logo { height: 44px !important; }
           .eg-hd-word { font-size: 30px !important; }
           .eg-hd-link { height: 92px !important; font-size: 20px !important; padding: 0 24px !important; }
           .eg-hd-dd   { font-size: 20px !important; }
